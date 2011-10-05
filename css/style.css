@@ -198,9 +198,94 @@ textarea { overflow: auto; vertical-align: top; resize: vertical; }
 input:valid, textarea:valid {  }
 input:invalid, textarea:invalid { background-color: #f0dddd; }
 
-/* Hide our form to prevent flash of content on initial page load 
-#heart_form { display: none; }*/
-#heart_cta > div { border: 1px solid red; }
+/* heartify css 
+======================================== */
+.heartify_wrapper {
+	float: left;
+	width: 190px;
+}
+
+.heartify_wrapper .cta {
+	background: #000;
+	color: #fff;
+	display: block;
+	font-weight: bold;
+	padding: 8px 0;
+	text-align: center;
+	text-decoration: none;
+	width: 180px;
+	
+	-webkit-border-radius: 6px; 
+       -moz-border-radius: 6px; 
+            border-radius: 6px;
+}
+
+.heartify_wrapper .cta:hover {
+	background: #ff339a; 
+    color: #fff;
+}
+
+.heartify_wrapper p {
+	color: #000;
+	font-weight: bold;
+	text-align: center;
+}
+
+.heartify_wrapper span {
+	color: #999;
+	display: block;
+	float: left;
+	margin: 10px 0 0;	
+}
+
+.heartify_wrapper .enabled { 
+    background: #ff339a !important;
+    color: #fff;
+    cursor: pointer;
+}
+ 
+.heartify_wrapper .disabled { 
+    background: #ccc !important;
+    cursor: default;
+}
+
+.heartify_wrapper span.disabled { 
+    background: none !important;
+    color: #ff339a !important;
+}
+
+.heartify_wrapper > div {
+	float: left;
+}
+
+.heartify_wrapper > div textarea {
+	border: 1px solid #999;
+	color: #999;
+	float: left;
+	height: 60px;
+	width: 180px;	
+}
+
+.heartify_wrapper > div input[type="submit"] { 
+	background: #ccc;
+	border: 0;
+	color: #fff;
+	float: right;
+	font-weight: bold;
+	margin: 10px 0 0;
+	padding: 3px 0;
+	width: 75px;
+	
+    -webkit-border-radius: 6px; 
+       -moz-border-radius: 6px; 
+            border-radius: 6px; 
+          
+}
+
+/* ========================================
+ end heartify css */
+
+
 /* =============================================================================
    Tables
    ========================================================================== */

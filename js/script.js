@@ -2,9 +2,8 @@
 
 	$(document).ready(function(){
 	  
-            var $anchor  = $('.heart_cta'),
+            var $anchor  = $('.cta'),
                 $text = $('<p>What do you heart?</p>'),
-                $parentDiv = $($anchor.parent()), //dunno if we want to use this...
                 $formDiv = $('<div></div>', { 'css' : { 'display' : 'none' } });
                      
             //form objects
@@ -31,11 +30,11 @@
 
                 $formDiv.insertAfter($text).append($textArea, $counter, $submitBtn).fadeIn();
  
-                $counter.html('140');
+                $counter.html(140);
                         
                 $textArea.focus();
               
-                $submitBtn.attr('disabled', 'disabled'); //addClass disabled
+                $submitBtn.attr('disabled', 'disabled');
 		  
                 return false;
 	       
@@ -56,21 +55,23 @@
                  var count =  140 - $textArea.val().length;
                  
                  if (count === 140 || count < 0) {
-                   $submitBtn.attr('disabled', 'disabled');
+                   $submitBtn.attr('disabled', 'disabled').addClass('disabled');
+                   $counter.addClass('disabled');
                  }
                  else {
-                   $submitBtn.removeAttr('disabled'); //addClass here too
+                   $submitBtn.removeAttr('disabled').removeClass('disabled').addClass('enabled');
+                   $counter.removeClass('disabled');
                  }
                  
-                 $counter.html( count );
+                 $counter.html(count);
                  
-                 console.log( count );
+                 console.log(count);
 		 
               });
 	  
               
               //$submitBtn.click(function(){
-		  //ajax time
+             	//ajax time
               //});
 
 	});
