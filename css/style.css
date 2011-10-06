@@ -246,7 +246,7 @@ input:invalid, textarea:invalid { background-color: #f0dddd; }
  
 .heartify_wrapper .disabled { 
     background: #ccc !important;
-    cursor: default;
+    cursor: default !important;
 }
 
 .heartify_wrapper span.disabled { 

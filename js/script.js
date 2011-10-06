@@ -17,24 +17,24 @@
               - click $anchor,
               - replace anchor w/ $text
               - insert $formDiv after $text,
-              - append form objects to $formDiv
-              - set counter to 140
-              - set $submitBtn to disabled, addClass of 'disabled'
+              - append form objects to $formDiv, fadeIn
+              - set counter to 140 (int)
               - set focus to textarea
+              - set $submitBtn attr to disabled, addClass disabled
 
             */
           
             $anchor.click(function(){
                   
-                $anchor.replaceWith($text);   
-
+                $anchor.replaceWith($text); 
+                
                 $formDiv.insertAfter($text).append($textArea, $counter, $submitBtn).fadeIn();
  
                 $counter.html(140);
-                        
+                
                 $textArea.focus();
               
-                $submitBtn.attr('disabled', 'disabled');
+                $submitBtn.attr('disabled', 'disabled').addClass('disabled');
 		  
                 return false;
 	       
@@ -44,8 +44,10 @@
              /*
              
              Keyup function of our (future) plug-in...
-               - remove 'disabled' attribute on $submitBtn after first keyup
-               - add and remove css classes (visual state)
+               - If count is equal to 140 or less than 0 - remove enabled attr, add disabled attr, remove enabled class, add disabled class
+               	 Else, remove disabled attr, add enabled attr, remove disabled class, add enabled class
+               - If count is less than 0, add disabled class to $counter
+                 Else remove disabled class
                - subtract from $counter w/ each character keyup
               
              */
@@ -55,18 +57,21 @@
                  var count =  140 - $textArea.val().length;
                  
                  if (count === 140 || count < 0) {
-                   $submitBtn.attr('disabled', 'disabled').addClass('disabled');
-                   $counter.addClass('disabled');
+                   $submitBtn.removeAttr('enabled').attr('disabled', 'disabled').removeClass('enabled').addClass('disabled');
                  }
                  else {
-                   $submitBtn.removeAttr('disabled').removeClass('disabled').addClass('enabled');
-                   $counter.removeClass('disabled');
+                   $submitBtn.removeAttr('disabled').attr('enabled', 'enabled').removeClass('disabled').addClass('enabled');
+                 }
+                 
+                 if (count < 0) {
+                	 $counter.addClass('disabled');
+                 }
+                 else {
+                	 $counter.removeClass('disabled');
                  }
                  
                  $counter.html(count);
                  
-                 console.log(count);
-		 
               });
 	  
               
