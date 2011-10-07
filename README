@@ -1,1 +1,20 @@
--- HELLO WORLD --
+/*
+,d88b.d88b,
+8888888888
+`Y8888888Y'
+  `Y888Y'
+    `Y'
++HEARTIFY PLUGIN+
+ 	Author: Adam Partyka
+ 	Date: 10/7/2011
+ 	
+ 	Special thanks to John Weis for lending a hand!
+	
+	Dev notes:
+	There are some default settings for the text to display, the css classes, attributes and the counter
+	
+	I was using $anchor.replaceWith($labelText); to swap out elements. That works fine
+	as a static script, but within the plugin those elements are not recognized when the click
+	function is called because they aren't in the DOM yet. AppendTo is the correct way in this
+	case.
+*/

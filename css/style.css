@@ -228,6 +228,7 @@ input:invalid, textarea:invalid { background-color: #f0dddd; }
 .heartify_wrapper p {
 	color: #000;
 	font-weight: bold;
+	margin: 10px 0;
 	text-align: center;
 }
 
@@ -254,7 +255,9 @@ input:invalid, textarea:invalid { background-color: #f0dddd; }
     color: #ff339a !important;
 }
 
+/* The hidden form div we are displaying */
 .heartify_wrapper > div {
+	display: none;
 	float: left;
 }
 

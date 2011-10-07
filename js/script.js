@@ -73,11 +73,27 @@
                  $counter.html(count);
                  
               });
-	  
+
+             
+             /*
+             
+             Submit click function of our (future) plug-in...
+               - ajax stuff
+               - remove form elements, restore $anchor to its original visual state
               
-              //$submitBtn.click(function(){
-             	//ajax time
-              //});
+             */
+              
+              /*$submitBtn.click(function(){
+             	
+            	 //ajax stuff here
+            	  
+            	 $formDiv.remove();
+            	 $text.replaceWith($anchor);
+            	 
+            	 return false;
+            	 
+              });
+              */
 
 	});
 	
