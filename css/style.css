@@ -285,6 +285,17 @@ input:invalid, textarea:invalid { background-color: #f0dddd; }
           
 }
 
+/* results div */
+.results {
+	border: 1px solid red;
+	float: left;
+	width: 30%;	
+}
+
+.results p {
+	border: 1px solid blue;
+}
+
 /* ========================================
  end heartify css */
 

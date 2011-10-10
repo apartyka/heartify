@@ -74,8 +74,6 @@
                  
                  $counter.html(count);
                  
-                 console.log(count);
-                 
               });
 
              
@@ -88,32 +86,6 @@
              */
               
               $submitBtn.click(function(e) {
-            	  
-            	  //var data = $textArea.val();
-            	  
-            	  //console.log(data);
-            	  
-            	  /*$.ajax({
-            		  type: 'POST',
-            		  url: 'http://localhost/workspace/DEV_TEST/WebContent/PINK/ajax_test.html',
-            		  dataType: 'html',
-            		  data: data,
-            		  isLocal: true,
-            		  success: function(data) {
-            		   
-            			$('.result').html(data);
-            		    
-            			//data.appendTo($('.result'));
-            			  
-            		    console.log('Post was performed.');
-            		    
-            		    $formDiv.remove();
-            		    $text.replaceWith($anchor);
-            		    
-            		  }
-            	  });
-            	  
-            	 sendData();*/
             	 
             	 $.ajax({ 
 	        		 type: 'POST',
@@ -121,39 +93,37 @@
 	        		 datatype: 'html',
 	        		 //data: data,
 	        		 success: function() { 
-	        			
-	        			 var data = $textArea.val();
-	        			  
-	        			 $('.result').html(data); 
 	        			 
-	        			 $formDiv.detach().css( { 'display' : 'none' } );
+	        			 //on success, write data to a new html element that is appended to <div class="result />
+	        			 var data = $textArea.val();
+	        			 var $resultDiv = $('.result');
+	        			 
+	        			 $resultDiv.html(function() {
+	        				
+	        				 var html = $('<p>' + data + '</p>');
+	        				    
+	        				 html.appendTo(this);
+	        				    
+	        			});
+
+	        			 
+	        			//console.log(data);
+	        			//this is what we were doin before...
+	        			//$resultDiv.html(data); 
+	        			 
+	        			$formDiv.detach().css( { 'display' : 'none' } );
 	            		 
-	        			 $anchor.fadeIn();
+	        			$anchor.fadeIn();
 	            		    
-	        			 console.log( "Ajax call complete.");
+	        			//console.log( "Ajax call complete.");
 	        		 }
 	        	 });
             	  
             	 e.preventDefault();
             	 
-            	 console.log('submit click!');
+            	 //console.log('submit click!');
             	 
               });
-              
-              /*function sendData() {
-	              $.ajax({ 
-	        		  type: 'POST',
-	        		  url: 'index.html',
-	        		  datatype: 'html',
-	        		  //data: data,
-	        		  success: function() { 
-	        			  var data = $textArea.val();
-	        			  
-	        			  $('.result').html(data, 'any data here???'); 
-	        			  	console.log( "Ajax call complete.");
-	        		  }
-	        	  });
-              }*/
 
 	});
 	

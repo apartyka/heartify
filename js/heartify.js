@@ -128,15 +128,25 @@
 	       		 datatype: 'html',
 	       		 success: function() { 
 	       			
-	       			 var data = $textArea.val();
-	       			  
-	       			 $('.result').html(data); 
+	       			 //on success, write data to a new html element that is appended to <div class="results" />
+        			 var data = $textArea.val();
+        			 var $resultDiv = $('.results');
+        			 
+        			 $resultDiv.html(function() {
+        				
+        				 var html = $('<p>' + data + '</p>');
+        				    
+        				 html.appendTo(this);
+        				    
+        			});
 	       			 
-	       			 $formDiv.detach().css( { 'display' : 'none' } );
+	       			//$('.results').html(data); 
+	       			 
+	       			$formDiv.detach().css( { 'display' : 'none' } );
 	           		 
-	       			 $anchor.fadeIn();
+	       			$anchor.fadeIn();
 	           		    
-	       			 console.log( "Ajax call complete.");
+	       			console.log( "Ajax call complete.");
 	       		 }
 	       	 });
 	       	  
