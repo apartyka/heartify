@@ -6,7 +6,7 @@
     `Y'
 +HEARTIFY PLUGIN+
  	Author: Adam Partyka
- 	Date: 10/7/2011
+ 	Date: 10/10/2011
  	
  	Special thanks to John Weis (weisjohn@gmail.com) for lending a hand!
 	
@@ -72,18 +72,16 @@
             $formDiv.appendTo($anchor.parent());
 
             $anchor.hide();
+            
             $formDiv.append($labelText, $textArea, $counter, $submitBtn).fadeIn();
 
             $counter.html(140);
 
-            $textArea.focus();
+            $textArea.val('').focus();
 
             $submitBtn.attr('disabled', 'disabled').addClass('disabled');
 
             e.preventDefault();
-
-            console.log('click!');
-            console.log($formDiv, 'formDiv is here!');
 
          });
 
@@ -96,23 +94,56 @@
              - Subtracts from $counter w/ each character keyup
          */
          $textArea.keyup(function () {
+        	 
+             var count = 140 - $textArea.val().length;
 
-            var count = 140 - $textArea.val().length;
+             if (count === 140 || count < 0) {
+                $submitBtn.removeAttr('enabled').attr('disabled', 'disabled').removeClass('enabled').addClass('disabled');
+             } else {
+                $submitBtn.removeAttr('disabled').attr('enabled', 'enabled').removeClass('disabled').addClass('enabled');
+             }
 
-            if (count === 140 || count < 0) {
-               $submitBtn.removeAttr('enabled').attr('disabled', 'disabled').removeClass('enabled').addClass('disabled');
-            } else {
-               $submitBtn.removeAttr('disabled').attr('enabled', 'enabled').removeClass('disabled').addClass('enabled');
-            }
+             if (count < 0) {
+                $counter.addClass('disabled');
+             } else {
+                $counter.removeClass('disabled');
+             }
 
-            if (count < 0) {
-               $counter.addClass('disabled');
-            } else {
-               $counter.removeClass('disabled');
-            }
-
-            $counter.html(count);
-
+             $counter.html(count);
+        	 
+         });
+         
+         /*
+         
+         Submit click function of our (future) plug-in...
+           - ajax call to submit the textArea.val() to a results <div>
+           - detach form elements, restore $anchor to its original visual state
+          
+         */
+         $submitBtn.click(function(e) {
+       	  
+	       	 $.ajax({ 
+	       		 type: 'POST',
+	       		 url: 'index.html',
+	       		 datatype: 'html',
+	       		 success: function() { 
+	       			
+	       			 var data = $textArea.val();
+	       			  
+	       			 $('.result').html(data); 
+	       			 
+	       			 $formDiv.detach().css( { 'display' : 'none' } );
+	           		 
+	       			 $anchor.fadeIn();
+	           		    
+	       			 console.log( "Ajax call complete.");
+	       		 }
+	       	 });
+	       	  
+	       	 e.preventDefault();
+	       	 
+	       	 console.log('submit click!');
+       	 
          });
 
       });

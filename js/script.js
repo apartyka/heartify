@@ -82,8 +82,8 @@
              /*
              
              Submit click function of our (future) plug-in...
-               - ajax stuff
-               - remove form elements, restore $anchor to its original visual state
+               - ajax call to submit the textArea.val() to a results <div>
+               - detach form elements, restore $anchor to its original visual state
               
              */
               
@@ -128,7 +128,7 @@
 	        			 
 	        			 $formDiv.detach().css( { 'display' : 'none' } );
 	            		 
-	        			 $anchor.show();
+	        			 $anchor.fadeIn();
 	            		    
 	        			 console.log( "Ajax call complete.");
 	        		 }
