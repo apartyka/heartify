@@ -121,24 +121,37 @@
           
          */
          $submitBtn.click(function(e) {
+        	 
+        	 console.log('submit');
        	  
 	       	 $.ajax({ 
 	       		 type: 'POST',
 	       		 url: 'index.html',
 	       		 datatype: 'html',
+	       		 context : $submitBtn,
 	       		 success: function() { 
 	       			
 	       			 //on success, write data to a new html element that is appended to <div class="results" />
         			 var data = $textArea.val();
+        			/*
         			 var $resultDiv = $('.results');
         			 
         			 $resultDiv.html(function() {
         				
         				 var html = $('<p>' + data + '</p>');
         				    
-        				 html.appendTo(this);
-        				    
+        				 // html.appendTo(this);
+        				 
+        				 console.dir( $(this).parent().parent().siblings('.results') );
+        				
+        				 $(this).append(html);
         			});
+        			 */
+        			
+        			 $(this).parent().parent().siblings('.results').append(	
+        				$('<p>' + data + '</p>')
+        			 );
+        			 
 	       			 
 	       			//$('.results').html(data); 
 	       			 
@@ -152,7 +165,7 @@
 	       	  
 	       	 e.preventDefault();
 	       	 
-	       	 console.log('submit click!');
+	       	 // console.log('submit click!');
        	 
          });
 
