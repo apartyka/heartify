@@ -3,7 +3,7 @@
 	$(document).ready(function(){
 	  
             var $anchor  = $('.cta'),
-                $text = $('<p>What do you heart?</p>'),
+                $labelText = $('<p>What do you heart?</p>'),
                 $formDiv = $('<div></div>', { 'css' : { 'display' : 'none' } });
                      
             //form objects
@@ -25,14 +25,16 @@
             */
           
             $anchor.click(function(){
-                  
-                $anchor.replaceWith($text); 
-                
-                $formDiv.insertAfter($text).append($textArea, $counter, $submitBtn).fadeIn();
+            	
+            	$anchor.hide();
+            	
+            	$formDiv.appendTo($anchor.parent());
+
+                $formDiv.append($labelText, $textArea, $counter, $submitBtn).fadeIn();
  
                 $counter.html(140);
                 
-                $textArea.focus();
+                $textArea.val('').focus();
               
                 $submitBtn.attr('disabled', 'disabled').addClass('disabled');
 		  
@@ -72,6 +74,8 @@
                  
                  $counter.html(count);
                  
+                 console.log(count);
+                 
               });
 
              
@@ -83,17 +87,73 @@
               
              */
               
-              /*$submitBtn.click(function(){
-             	
-            	 //ajax stuff here
+              $submitBtn.click(function(e) {
             	  
-            	 $formDiv.remove();
-            	 $text.replaceWith($anchor);
+            	  //var data = $textArea.val();
+            	  
+            	  //console.log(data);
+            	  
+            	  /*$.ajax({
+            		  type: 'POST',
+            		  url: 'http://localhost/workspace/DEV_TEST/WebContent/PINK/ajax_test.html',
+            		  dataType: 'html',
+            		  data: data,
+            		  isLocal: true,
+            		  success: function(data) {
+            		   
+            			$('.result').html(data);
+            		    
+            			//data.appendTo($('.result'));
+            			  
+            		    console.log('Post was performed.');
+            		    
+            		    $formDiv.remove();
+            		    $text.replaceWith($anchor);
+            		    
+            		  }
+            	  });
+            	  
+            	 sendData();*/
             	 
-            	 return false;
+            	 $.ajax({ 
+	        		 type: 'POST',
+	        		 url: 'index.html',
+	        		 datatype: 'html',
+	        		 //data: data,
+	        		 success: function() { 
+	        			
+	        			 var data = $textArea.val();
+	        			  
+	        			 $('.result').html(data); 
+	        			 
+	        			 $formDiv.detach().css( { 'display' : 'none' } );
+	            		 
+	        			 $anchor.show();
+	            		    
+	        			 console.log( "Ajax call complete.");
+	        		 }
+	        	 });
+            	  
+            	 e.preventDefault();
+            	 
+            	 console.log('submit click!');
             	 
               });
-              */
+              
+              /*function sendData() {
+	              $.ajax({ 
+	        		  type: 'POST',
+	        		  url: 'index.html',
+	        		  datatype: 'html',
+	        		  //data: data,
+	        		  success: function() { 
+	        			  var data = $textArea.val();
+	        			  
+	        			  $('.result').html(data, 'any data here???'); 
+	        			  	console.log( "Ajax call complete.");
+	        		  }
+	        	  });
+              }*/
 
 	});
 	
