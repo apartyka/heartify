@@ -35,8 +35,8 @@
             enabled: 'enabled',
             disabled: 'disabled'
          },
-         counter: 140
-
+         counter: 140,
+         on_submit : null
       };
 
       options = $.extend({}, defaults, options);
@@ -160,6 +160,11 @@
 	       			$anchor.fadeIn();
 	           		    
 	       			console.log( "Ajax call complete.");
+	       			
+	       			if (typeof options.on_submit == 'function') {
+	       				options.on_submit();
+	       			}
+	       			
 	       		 }
 	       	 });
 	       	  
@@ -173,10 +178,5 @@
 
    };
 
-   $(document).ready(function () {
-
-      $('.cta').heartify();
-
-   });
 
 })(jQuery);

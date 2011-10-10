@@ -29,7 +29,7 @@
 	<div id="main" role="main">
 		
 		<div class="heartify_wrapper">
-			<a href="" class="cta" title="What do you heart?">What do you heart?</a>
+			<a href="" class="cta2" title="What do you heart?">What do you heart?</a>
 		</div>
 		<div class="results"></div>
     </div>
@@ -46,6 +46,19 @@
   <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
 
   <script defer src="js/heartify.js"></script>
+  <script>
+  	
+	   $(document).ready(function () {
+	
+	    $('.cta').heartify();
+	    $(".cta2").heartify({ 
+			on_submit : function() { 
+				console.log('submitted asdfasdf');
+			}
+		});
+	
+	   });
+  </script>
   <!--<script defer src="js/script.js"></script>-->
   <!-- end scripts-->
 
