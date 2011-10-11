@@ -25,39 +25,41 @@
 
       var defaults = {
 
-         text: 'What do you heart?',
+         labelText: 'What do you heart?',
+         textArea: { 
+        	 value: 'I heart'
+         },
          cssClass: {
             enabled: 'enabled',
             disabled: 'disabled'
          },
-         //probably want to leave these as is
          attr: {
             enabled: 'enabled',
             disabled: 'disabled'
          },
-         counter: 140,
+         counter: 133,
          on_submit : null
+         
       };
 
       options = $.extend({}, defaults, options);
 
       return this.each(function () {
 
-         console.log('plugin called!');
-
          //form objects
          var $formDiv = $('<div></div>'),
             $labelText = $('<p></p>'),
             $textArea = $('<textarea></textarea>'),
             $counter = $('<span></span>'),
-            $submitBtn = $('<input type="submit" />');
-
+            $submitBtn = $('<input type="submit" value="Submit" />');
+         
+         //object we're enabling the plugin on
          var $anchor = $(this);
 
          /*
             Initial click function:
               - click $anchor element
-              - set $labelText's html to our default text
+              - set $labelText's html to our default labelText
               - grab $formDiv, append it to the parent element - in this case, <div class='heartify_wrapper'>
               - hide $anchor
               - append form objects to $formDiv, fadeIn
@@ -67,7 +69,7 @@
          */
          $anchor.click(function (e) {
 
-            $labelText.html(defaults.text);
+            $labelText.html(defaults.labelText);
 
             $formDiv.appendTo($anchor.parent());
 
@@ -75,9 +77,9 @@
             
             $formDiv.append($labelText, $textArea, $counter, $submitBtn).fadeIn();
 
-            $counter.html(140);
+            $counter.html(defaults.counter);
 
-            $textArea.val('').focus();
+            $textArea.val(defaults.textArea.value);
 
             $submitBtn.attr('disabled', 'disabled').addClass('disabled');
 
@@ -98,15 +100,21 @@
              var count = 140 - $textArea.val().length;
 
              if (count === 140 || count < 0) {
-                $submitBtn.removeAttr('enabled').attr('disabled', 'disabled').removeClass('enabled').addClass('disabled');
+                $submitBtn.removeAttr(defaults.attr.enabled)
+                .attr('disabled', defaults.attr.disabled)
+                .removeClass(defaults.cssClass.enabled)
+                .addClass(defaults.cssClass.disabled);
              } else {
-                $submitBtn.removeAttr('disabled').attr('enabled', 'enabled').removeClass('disabled').addClass('enabled');
+                $submitBtn.removeAttr(defaults.attr.disabled)
+                .attr('enabled', defaults.attr.enabled)
+                .removeClass(defaults.cssClass.disabled)
+                .addClass(defaults.cssClass.enabled);
              }
 
              if (count < 0) {
-                $counter.addClass('disabled');
+                $counter.addClass(defaults.cssClass.disabled);
              } else {
-                $counter.removeClass('disabled');
+                $counter.removeClass(defaults.cssClass.disabled);
              }
 
              $counter.html(count);
@@ -115,14 +123,12 @@
          
          /*
          
-         Submit click function of our (future) plug-in...
+         Submit function:
            - ajax call to submit the textArea.val() to a results <div>
            - detach form elements, restore $anchor to its original visual state
           
          */
          $submitBtn.click(function(e) {
-        	 
-        	 console.log('submit');
        	  
 	       	 $.ajax({ 
 	       		 type: 'POST',
@@ -131,35 +137,15 @@
 	       		 context : $submitBtn,
 	       		 success: function() { 
 	       			
-	       			 //on success, write data to a new html element that is appended to <div class="results" />
         			 var data = $textArea.val();
-        			/*
-        			 var $resultDiv = $('.results');
-        			 
-        			 $resultDiv.html(function() {
-        				
-        				 var html = $('<p>' + data + '</p>');
-        				    
-        				 // html.appendTo(this);
-        				 
-        				 console.dir( $(this).parent().parent().siblings('.results') );
-        				
-        				 $(this).append(html);
-        			});
-        			 */
-        			
+        			 //find $submitBtn's parent, append data to a <p> within the sibling .results <div>
         			 $(this).parent().parent().siblings('.results').append(	
         				$('<p>' + data + '</p>')
         			 );
-        			 
-	       			 
-	       			//$('.results').html(data); 
 	       			 
 	       			$formDiv.detach().css( { 'display' : 'none' } );
 	           		 
 	       			$anchor.fadeIn();
-	           		    
-	       			console.log( "Ajax call complete.");
 	       			
 	       			if (typeof options.on_submit == 'function') {
 	       				options.on_submit();
@@ -170,8 +156,6 @@
 	       	  
 	       	 e.preventDefault();
 	       	 
-	       	 // console.log('submit click!');
-       	 
          });
 
       });

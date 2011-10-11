@@ -269,6 +269,10 @@ input:invalid, textarea:invalid { background-color: #f0dddd; }
 	width: 180px;	
 }
 
+.heartify_wrapper > div textarea:focus {
+	color: #000;	
+}
+
 .heartify_wrapper > div input[type="submit"] { 
 	background: #ccc;
 	border: 0;
@@ -276,8 +280,8 @@ input:invalid, textarea:invalid { background-color: #f0dddd; }
 	float: right;
 	font-weight: bold;
 	margin: 10px 0 0;
-	padding: 3px 0;
-	width: 75px;
+	padding: 3px 10px;
+	/*width: 75px;*/
 	
     -webkit-border-radius: 6px; 
        -moz-border-radius: 6px; 
@@ -292,9 +296,7 @@ input:invalid, textarea:invalid { background-color: #f0dddd; }
 	width: 30%;	
 }
 
-.results p {
-	border: 1px solid blue;
-}
+.results p { }
 
 /* ========================================
  end heartify css */

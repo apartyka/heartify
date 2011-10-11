@@ -18,21 +18,24 @@
     <header>
 
     </header>
-    <div id="main" role="main">
+    <div class="main">
 		
 		<div class="heartify_wrapper">
 			<a href="" class="cta" title="What do you heart?">What do you heart?</a>
 		</div>
 		<div class="results"></div>
+		
     </div>
 	
-	<div id="main" role="main">
+	<div class="main">
 		
 		<div class="heartify_wrapper">
 			<a href="" class="cta2" title="What do you heart?">What do you heart?</a>
 		</div>
 		<div class="results"></div>
+		
     </div>
+    
     <footer>
 
     </footer>
@@ -50,12 +53,13 @@
   	
 	   $(document).ready(function () {
 	
-	    $('.cta').heartify();
-	    $(".cta2").heartify({ 
-			on_submit : function() { 
-				console.log('submitted asdfasdf');
-			}
-		});
+		    $('.cta').heartify();
+		    
+		    $('.cta2').heartify({ 
+				on_submit : function() { 
+				//	console.log('callback function');
+				}
+			});
 	
 	   });
   </script>
