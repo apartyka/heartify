@@ -5,18 +5,12 @@
   `Y888Y'
     `Y'
 +HEARTIFY PLUGIN+
- 	Author: Adam Partyka
- 	Date: 10/10/2011
+	Author: Adam Partyka
+	Email: adampartyka@gmail.com
+ 	Date: 10/11/2011
  	
  	Special thanks to John Weis (weisjohn@gmail.com) for lending a hand!
-	
-	Dev notes:
-	There are some default settings for the text to display, the css classes, attributes and the counter
-	
-	I was using $anchor.replaceWith($labelText); to swap out elements. That works fine
-	as a static script, but with the plugin those elements are not recognized when the click
-	function is called because they aren't in the DOM yet! AppendTo is the correct way in this
-	case.
+ 	Check the readme file on github (github.com/apartyka/heartify) for additional notes and implementation.
 */
 
 (function ($) {
@@ -69,7 +63,7 @@
          */
          $anchor.click(function (e) {
 
-            $labelText.html(defaults.labelText);
+            $labelText.html(options.labelText);
 
             $formDiv.appendTo($anchor.parent());
 
@@ -77,11 +71,11 @@
             
             $formDiv.append($labelText, $textArea, $counter, $submitBtn).fadeIn();
 
-            $counter.html(defaults.counter);
+            $counter.html(options.counter);
 
-            $textArea.val(defaults.textArea.value);
+            $textArea.val(options.textArea.value);
 
-            $submitBtn.attr('disabled', 'disabled').addClass('disabled');
+            $submitBtn.attr('disabled', options.attr.disabled).addClass(options.cssClass.disabled);
 
             e.preventDefault();
 
@@ -100,21 +94,21 @@
              var count = 140 - $textArea.val().length;
 
              if (count === 140 || count < 0) {
-                $submitBtn.removeAttr(defaults.attr.enabled)
-                .attr('disabled', defaults.attr.disabled)
-                .removeClass(defaults.cssClass.enabled)
-                .addClass(defaults.cssClass.disabled);
+                $submitBtn.removeAttr(options.attr.enabled)
+                .attr('disabled', options.attr.disabled)
+                .removeClass(options.cssClass.enabled)
+                .addClass(options.cssClass.disabled);
              } else {
-                $submitBtn.removeAttr(defaults.attr.disabled)
-                .attr('enabled', defaults.attr.enabled)
-                .removeClass(defaults.cssClass.disabled)
-                .addClass(defaults.cssClass.enabled);
+                $submitBtn.removeAttr(options.attr.disabled)
+                .attr('enabled', options.attr.enabled)
+                .removeClass(options.cssClass.disabled)
+                .addClass(options.cssClass.enabled);
              }
 
              if (count < 0) {
-                $counter.addClass(defaults.cssClass.disabled);
+                $counter.addClass(options.cssClass.disabled);
              } else {
-                $counter.removeClass(defaults.cssClass.disabled);
+                $counter.removeClass(options.cssClass.disabled);
              }
 
              $counter.html(count);

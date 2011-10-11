@@ -6,13 +6,51 @@
     `Y'
 +HEARTIFY PLUGIN+
  	Author: Adam Partyka
- 	Date: 10/7/2011
+	Email: adampartyka@gmail.com
+ 	Date: 10/11/2011
  	
- 	Special thanks to John Weis for lending a hand!
+ 	Special thanks to John Weis (weisjohn@gmail.com for lending a hand!
 	
 	Dev notes:
-	There are some default settings for the text to display, the css classes, attributes and the counter
+	Default settings within heartify.js
+	var defaults = {
+
+         labelText: 'What do you heart?',
+         textArea: { 
+        	 value: 'I heart'
+         },
+         cssClass: {
+            enabled: 'enabled',
+            disabled: 'disabled'
+         },
+         attr: {
+            enabled: 'enabled',
+            disabled: 'disabled'
+         },
+         counter: 133, //dependent on textArea.value
+         on_submit : null
+         
+      };
 	
+	To declare settings at document.ready:
+	
+	$(document).ready(function () {
+	
+		    $('.your_element').heartify({
+		    	labelText: 'Foo!',
+		    	textArea: {
+		    		value: 'I heart?'
+		    	},
+				cssClass: {
+					enabled: 'your_new_className', //Update the css if you change this!
+					disabled: 'your_new_className'
+				}
+		    	counter: 132
+		    });
+	
+	   });
+	
+	Other notes:
 	I was using $anchor.replaceWith($labelText); to swap out elements. That works fine
 	as a static script, but within the plugin those elements are not recognized when the click
 	function is called because they aren't in the DOM yet. AppendTo is the correct way in this
