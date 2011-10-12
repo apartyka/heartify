@@ -30,7 +30,7 @@
                 enabled: 'enabled',
                 disabled: 'disabled'
             },
-            counter: 133,
+            counter: 140,
             on_submit: null
 
         };
@@ -56,12 +56,14 @@
               - grab $formDiv, append it to the parent element - in this case, <div class='heartify_wrapper'>
               - hide $anchor
               - append form objects to $formDiv, fadeIn
-              - set counter to 140 (int)
-              - set focus to textarea
+              - set counter to the current value of textarea 
               - set $submitBtn attr to disabled, addClass disabled
          */
             $anchor.click(function(e) {
-
+            	
+            	//options.counter(140) - current length of textArea.value
+            	var counterTotal = options.counter - options.textArea.value.length;
+            	
                 $labelText.html(options.labelText);
 
                 $formDiv.appendTo($anchor.parent());
@@ -70,9 +72,9 @@
 
                 $formDiv.append($labelText, $textArea, $counter, $submitBtn).fadeIn();
 
-                $counter.html(options.counter);
-
                 $textArea.val(options.textArea.value);
+
+                $counter.html(counterTotal);
 
                 $submitBtn.attr('disabled', options.attr.disabled).addClass(options.cssClass.disabled);
 
