@@ -6,10 +6,9 @@
     `Y'
 +HEARTIFY PLUGIN+
 	Author: Adam Partyka
-	Email: adampartyka@gmail.com
  	Date: 10/11/2011
  	
- 	Special thanks to John Weis (weisjohn@gmail.com) for lending a hand!
+ 	Special thanks to John Weis (weisjohn) for lending a hand!
  	Check the readme file on github (github.com/apartyka/heartify) for additional notes and implementation.
 */
 
